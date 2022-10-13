@@ -40,7 +40,7 @@ void push(struct stack **top,int val) {
 //somewhat LL DELETE AT HEAD
 void pop(struct stack **top) {
     //temp
-    struct stack *temp =  (struct stack *)malloc(sizeof(struct stack));
+    struct stack *temp;
     if(*top==NULL) {
         printf("Stack Underflow\n");
     }
@@ -58,8 +58,7 @@ void pop(struct stack **top) {
 }
 
 int main() {
-    struct stack *top= (struct stack *)malloc(sizeof(struct stack));
-    top=NULL;
+    struct stack *top =NULL;
     int choice,val;
     printf("1.Display\n2.Push\n3.Pop\n4.Exit\n");
 
