@@ -43,7 +43,7 @@ void display(node *f)
 }
 
 void dequeue(node **f){
-   node *temp=(node *)malloc(sizeof(node));
+   node *temp;
 
    if(*f==NULL){
       printf("Queue empty\n");
