@@ -52,15 +52,15 @@ struct node *ins(struct node *root, int val)
    return root;
 }
 
-struct node * inorderpre(struct node* root){
-    root = root->left;
-    while (root->right!=NULL)
-    {
-        root = root->right;
-    }
-    return root;
+struct node *inorderpre(struct node *root)
+{
+   root = root->left;
+   while (root->right != NULL)
+   {
+      root = root->right;
+   }
+   return root;
 }
-
 
 struct node *del(struct node *root, int x)
 {
@@ -94,7 +94,6 @@ struct node *del(struct node *root, int x)
    return root;
 }
 
-
 // display using inorder
 void display(struct node *root)
 {
@@ -126,46 +125,59 @@ void postoder(struct node *root)
    }
 }
 
-//search iteration
-int searchIter(struct node* root, int key){
-    while(root!=NULL){
-        if(key == root->data){
-            return 1;
-        }
-        else if(key<root->data){
-            root = root->left;
-        }
-        else{
-            root = root->right;
-        }
-    }
-    return 0;
+// search iteration
+int searchIter(struct node *root, int key)
+{
+   while (root != NULL)
+   {
+      if (key == root->data)
+      {
+         return 1;
+      }
+      else if (key < root->data)
+      {
+         root = root->left;
+      }
+      else
+      {
+         root = root->right;
+      }
+   }
+   return 0;
 }
 
-int search(struct node* root, int key){
-    if(root!=NULL){
-        if(key == root->data){
-            return 1;
-        }
-        else if(key<root->data){
-            return search(root->left,key);
-        }
-        else{
-            return search(root->left,key);
-        }
-    }
-    else{
-    return 0;
-    }
+//search recursive
+int search(struct node *root, int key)
+{
+   if (root != NULL)
+   {
+      if (key == root->data)
+      {
+         return 1;
+      }
+      else if (key < root->data)
+      {
+         return search(root->left, key);
+      }
+      else
+      {
+         return search(root->right, key);
+      }
+   }
+   else
+   {
+      return 0;
+   }
 }
 
-struct node* createNode(int data){
-    struct node *n; // creating a node pointer
-    n = (struct node *) malloc(sizeof(struct node)); // Allocating memory in the heap
-    n->data = data; 
-    n->left = NULL; 
-    n->right = NULL; 
-    return n; //returning node
+struct node *createNode(int data)
+{
+   struct node *n;                                 // creating a node pointer
+   n = (struct node *)malloc(sizeof(struct node)); // Allocating memory in the heap
+   n->data = data;
+   n->left = NULL;
+   n->right = NULL;
+   return n; // returning node
 }
 
 int main()
@@ -174,44 +186,48 @@ int main()
 
    // c is choice
    int c, val;
-   ins(root,3);
-   ins(root,1);
-   ins(root,7);
+   root=ins(root, 1);
+   root=ins(root, 7);
+   root=ins(root, 3);
    display(root);
-   
+   printf("\n%d\n",search(root,7));
+   printf("\n%d\n",search(root,5));
 
-//   while (c != 4)
-//    {
-//       printf("\nEnter\n 1.for insert\n 2.for delete\n 3.for display\n 4.for exit\n");
-//       scanf("%d", &c);
-//       switch (c)
-//       {
-//       case 1:
-//          printf("\nEnter the value");
-//          scanf("%d", &val);
-//          root = ins(root, val);
-//          if (root != NULL)
-//             display(root);
-//          else
-//             printf("Tree is empty");
-//          break;
-//       case 2:
-//          printf("Enter the value");
-//          scanf("%d", &val);
-//          root = del(root, val);
-//          if (root != NULL)
-//             display(root);
-//          else
-//             printf("Tree is empty");
-//          break;
-//       case 3:
-//          if (root != NULL)
-//             display(root);
-//          else
-//             printf("Tree is empty");
-//          break;
-//       }
-//    }
-   
+   printf("\n%d\n",searchIter(root,7));
+   printf("\n%d\n",searchIter(root,5));
+
+   //   while (c != 4)
+   //    {
+   //       printf("\nEnter\n 1.for insert\n 2.for delete\n 3.for display\n 4.for exit\n");
+   //       scanf("%d", &c);
+   //       switch (c)
+   //       {
+   //       case 1:
+   //          printf("\nEnter the value");
+   //          scanf("%d", &val);
+   //          root = ins(root, val);
+   //          if (root != NULL)
+   //             display(root);
+   //          else
+   //             printf("Tree is empty");
+   //          break;
+   //       case 2:
+   //          printf("Enter the value");
+   //          scanf("%d", &val);
+   //          root = del(root, val);
+   //          if (root != NULL)
+   //             display(root);
+   //          else
+   //             printf("Tree is empty");
+   //          break;
+   //       case 3:
+   //          if (root != NULL)
+   //             display(root);
+   //          else
+   //             printf("Tree is empty");
+   //          break;
+   //       }
+   //    }
+
    return 0;
 }
