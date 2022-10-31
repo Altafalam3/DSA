@@ -60,7 +60,9 @@ struct node *del(struct node *head, int num)
    if (temp->data == num)
    {
       head = head->next;
-      head->prev = NULL;
+      if(head!=NULL){
+          head->prev = NULL;
+      }
       free(temp);
       return head;
    }
