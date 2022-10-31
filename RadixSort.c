@@ -38,11 +38,15 @@ void radix(int a[],int n){
         }
 
         for(i=0;i<10;i++){
+            //rem for finding units in 0th pass ,tens in 1st pass ,so on
             rem=(a[i]/divisor)%10;
+            
             bucket[rem][bucket_count[rem]] = a[i];
+            //for finding count of number(count sort)
             bucket_count[rem] += 1;
         }
         i=0;
+        
         for(k=0;k<10;k++){
             for(j=0;j<bucket_count[k];j++){
                 a[i]=bucket[k][j];
@@ -60,6 +64,7 @@ int main(){
     printf("Enter size:");
     scanf("%d",&n);
     int a[n];
+    
     printf("Enter elements \n");
     for(int i=0;i<n;i++){
         scanf("%d",&a[i]);
