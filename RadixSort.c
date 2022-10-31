@@ -10,6 +10,7 @@ void display(int arr[],int m){
 
 int largest(int a[]){
     int larger=a[0];
+
     for(int i=1;i<10;i++){
         if(a[i]>larger){
             larger=a[i];
@@ -21,14 +22,17 @@ int largest(int a[]){
 void radix(int a[],int n){
     int bucket[10][10],bucket_count[10];
     int i,j,k,rem,NOP=0,divisor=1,larger,pass;
-
+    
+    //highest num
     larger=largest(a);
+    //count of highest num
     while(larger>0){
         NOP++;
         larger/=10;
     }
 
     for(pass=0;pass<NOP;pass++){
+        //initialising empty with 0
         for(i=0;i<10;i++){
             bucket_count[i]=0;
         }
