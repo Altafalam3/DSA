@@ -25,8 +25,8 @@ void search(int bucket[],int m,int val) {
     else {
         //loop tsize
         for (int j = 0; j < m; j++) {
-            int hv2 = (hv + j*(val%(m-1)))%m;
-
+            int hv2 = (hv + j*(1+((val/m)%(m-1))))%m;
+          
             if(bucket[hv2]==val) {
                 flag=1;
                 break;
