@@ -115,7 +115,7 @@ void preorder(struct node *root)
    }
 }
 
-void postoder(struct node *root)
+void postorder(struct node *root)
 {
    if (root != NULL)
    {
