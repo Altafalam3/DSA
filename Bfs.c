@@ -1,123 +1,124 @@
-#include<stdio.h>
+#include <stdio.h>
+// node +1 size hona chahiye since we r starting from 1
 #define size 10
 
+// matrix of 1 and 0 s to see which node is connected to which
 int adj_mat[size][size];
+// visited node or not
 int vis[size];
 
 struct queue1
 {
     int a[size];
-    int front,rear;
-}q1;
+    int front, rear;
+} q1;
 
+// no need to check for full bcz size defined
 void enqueue(int x)
 {
-  if(q1.front==-1)
-  {
-    
-      q1.front++;
-      q1.rear++;
-      q1.a[q1.front]=x;
-      return;
-  }
-  q1.rear++;
-  q1.a[q1.rear]=x;
-  return;
+    //1st position insert
+    if (q1.front == -1)
+    {
+        q1.front++;
+        q1.rear++;
+        q1.a[q1.rear] = x;
+        return;
+    }
+    q1.rear++;
+    q1.a[q1.rear] = x;
+    return;
 }
 
 int dequeue()
 {
     int t;
-    t=q1.a[q1.front];
+    t = q1.a[q1.front];
     q1.front++;
     return t;
 }
 
 void bfs(int s)
 {
-   //printf("hello");
     int p;
+    //source vertex insert and visited
     enqueue(s);
-    vis[s]=1;
-    p=dequeue();
-
-    if(p!=0)
+    vis[s] = 1;
+    //sv removed and print
+    p = dequeue();
+    if (p != 0)
     {
-        printf("\t%d",p);
+        printf("\t%d", p);
     }
 
-    while(p!=0)
+    while (p != 0)
     {
-        for(int i=1;i<=size;i++)
+        for (int i = 1; i <= size; i++)
         {
-            if(adj_mat[p][i]==1 && vis[i]==0)
+            //insert all connected which is not visited
+            if (adj_mat[p][i] == 1 && vis[i] == 0)
             {
-            enqueue(i);
-            vis[i]=1;
+                enqueue(i);
+                vis[i] = 1;
             }
         }
 
-        p=dequeue();
-        if(p!=0)
-       {
-        printf("\t%d",p);
-       }
-
+        p = dequeue();
+        if (p != 0)
+        {
+            printf("\t%d", p);
+        }
     }
 }
 
 int main()
 {
-    int  node,edges,sp,ep,sv;
-    q1.front=-1;
-    q1.rear=-1;
-    
-    printf("Hello BFS Queue");
+    int node, edges, sp, ep, sv;
+    q1.front = -1;
+    q1.rear = -1;
 
-    for(int i=1;i<=size;i++)
+    for (int i = 1; i <= size; i++)
     {
-        for(int j=1;j<=size;j++)
+        for (int j = 1; j <= size; j++)
         {
-            adj_mat[i][j]=0;
+            adj_mat[i][j] = 0;
         }
     }
-    
-    for(int i=1;i<size;i++)
+
+    for (int i = 1; i < size; i++)
     {
-        vis[i]=0;
+        vis[i] = 0;
     }
 
     printf("\nEnter number of nodes? : ");
-    scanf("%d",&node);
+    scanf("%d", &node);
     printf("\nEnter number of edges? : ");
-    scanf("%d",&edges);
+    scanf("%d", &edges);
 
-    for(int i=1;i<=edges;i++)
+    for (int i = 1; i <= edges; i++)
     {
         printf("\nEnter the start point: ");
-        scanf("%d",&sp);
+        scanf("%d", &sp);
 
         printf("\nEnter the end point: ");
-        scanf("%d",&ep);
-
+        scanf("%d", &ep);
+        //marking visited for connected
         adj_mat[sp][ep] = 1;
         adj_mat[ep][sp] = 1;
     }
 
     printf("\nAdjacency Matrix");
-    
-    for(int i=1;i<=size;i++)
+
+    for (int i = 1; i <= size; i++)
     {
         printf("\n");
-        for(int j=1;j<=size;j++)
+        for (int j = 1; j <= size; j++)
         {
-            printf("\t%d",adj_mat[i][j]);
+            printf("\t%d", adj_mat[i][j]);
         }
     }
 
     printf("\nEnter the source vertex:");
-    scanf("%d",&sv);
-
+    scanf("%d", &sv);
     bfs(sv);
 
     return 0;
